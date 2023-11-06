@@ -6,4 +6,6 @@
 # 3)byte -от 0 до 256
 # 4)map (value, fromLow, from High, toLow, toHigh)
 # y = map(x, 0, 1023, 0, 255)
-# 5)
+# 5)lcd.begin(16, 2) задаем размарность экрана
+# 6)setCursor(0,0) номера ячеек(индекс)
+# 7)
