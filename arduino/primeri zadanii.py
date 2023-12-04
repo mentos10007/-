@@ -25,3 +25,30 @@ lcd.clear();
 if (x == 19) x = 0;
 
 }
+
+
+
+lcd.print(".              .");
+delay(1000);
+lcd.clear();
+lcd.print(" .            .");
+delay(1000);
+lcd.clear();
+lcd.print("  .          .");
+delay(1000);
+lcd.clear();
+lcd.print("   .       .");
+delay(1000);
+lcd.clear();
+lcd.print("    .      .");
+delay(1000);
+lcd.clear();
+lcd.print("     .    .");
+delay(1000);
+lcd.clear();
+lcd.print("      . .");
+delay(1000);
+lcd.clear();
+lcd.print("       ..");
+delay(1000);
+lcd.clear();
