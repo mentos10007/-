@@ -1,14 +1,14 @@
-import serial
+# import serial
 import time
 from tkinter import*
 
 from random import randint
 root = Tk()
 root.geometry("500x500")
+#
+# arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1)
 
-arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1)
-
-
+# label =
 
 def outText_1():
     arduino.write(bytes('1', 'utf-8'))
@@ -53,6 +53,7 @@ opt.config(
     width=19, font=('Helvetica')
 )
 opt.place(x=15, y=70)
+
 
 
 root.mainloop()
