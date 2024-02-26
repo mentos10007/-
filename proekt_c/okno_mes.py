@@ -69,6 +69,6 @@ vod_soob.grid(padx=300,
 
 
 
-
+https://metanit.com/python/tkinter/3.1.php
 
 okno.mainloop()
