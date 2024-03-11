@@ -6,7 +6,7 @@ from random import randint
 root = Tk()
 root.geometry("500x500")
 #
-arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM5', baudrate=9600, timeout=0.1)
 
 
 
@@ -22,7 +22,7 @@ btn_vkl = Button(root,
                  height=0,
                  command=outText_1
 )
-btn_vkl.place(x=50, y=150)
+btn_vkl.place(x=150, y=150)
 
 btn_vikl = Button(root,
                   text="выкл",
@@ -37,7 +37,7 @@ def outText_5():
 
 
 
-btn_vikl.place(x=150, y=150)
+btn_vikl.place(x=250, y=150)
 
 
 
@@ -46,13 +46,14 @@ variable = StringVar(root)
 variable.set("выбрать порт")
 opt = OptionMenu(
     root, variable, *[
-        arduino
+        arduino.port,
+        "выбрать порт"
     ]
 )
 opt.config(
     width=19, font=('Helvetica')
 )
-opt.place(x=15, y=70)
+opt.place(x=130, y=70)
 
 
 
