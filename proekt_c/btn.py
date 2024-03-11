@@ -1,4 +1,4 @@
-# import serial
+import serial
 import time
 from tkinter import*
 
@@ -6,9 +6,9 @@ from random import randint
 root = Tk()
 root.geometry("500x500")
 #
-# arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1)
 
-# label =
+
 
 def outText_1():
     arduino.write(bytes('1', 'utf-8'))
