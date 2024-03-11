@@ -59,3 +59,4 @@ opt.place(x=130, y=70)
 
 root.mainloop()
 
+# gkfnf yf gkgfne b yf grт плата на плату и на пк
