@@ -4,7 +4,7 @@ from datetime import datetime
 from RF24 import RF24, RF24_PA_LOW
 
 # Инициализация радио модуля RF24
-radio = RF24(22, 0)  # указываем пины CE и CSN
+radio = RF24(9, 8)  # указываем пины CE и CSN
 radio.begin()
 radio.setPALevel(RF24_PA_LOW)
 radio.openWritingPipe(b"1Node")
