@@ -1,40 +1,49 @@
 
 import tkinter as tk
-from datetime import datetime
-from RF24 import RF24, RF24_PA_LOW
+import serial
 
-# Инициализация радио модуля RF24
-radio = RF24(9, 8)  # указываем пины CE и CSN
-radio.begin()
-radio.setPALevel(RF24_PA_LOW)
-radio.openWritingPipe(b"1Node")
-radio.openReadingPipe(1, b"2Node")
+# Установите правильный COM порт и скорость передачи данных
+ser = serial.Serial('COM1', 9600)
+
+def send_message():
+    name = entry_name.get()
+    message = entry_message.get()
+    full_message = f"{name}: {message}"
+    ser.write(full_message.encode())
+    entry_message.delete(0, tk.END)
+
+def receive_message():
+    while ser.in_waiting:
+        message = ser.readline().decode().strip()
+        print(message)
+        text_box.insert(tk.END, message + '\n')
 
 # Создание графического интерфейса
-def send_message():
-    name = name_entry.get()
-    message = message_entry.get()
-    timestamp = datetime.now().strftime("%H:%M:%S")
-    data = f"{name}: {message} [{timestamp}]"
-    radio.startWrite(data.encode('utf-8'))
-    print(f"Сообщение отправлено: {data}")
-
 root = tk.Tk()
 root.title("Мессенджер")
 
-name_label = tk.Label(root, text="Введите ваше имя:")
-name_label.pack()
+frame = tk.Frame(root)
+frame.pack(padx=10, pady=10)
 
-name_entry = tk.Entry(root)
-name_entry.pack()
+label_name = tk.Label(frame, text="Имя:")
+label_name.grid(row=0, column=0, padx=5, pady=5, sticky=tk.W)
 
-message_label = tk.Label(root, text="Введите ваше сообщение:")
-message_label.pack()
+entry_name = tk.Entry(frame)
+entry_name.grid(row=0, column=1, padx=5, pady=5)
 
-message_entry = tk.Entry(root)
-message_entry.pack()
+label_message = tk.Label(frame, text="Сообщение:")
+label_message.grid(row=1, column=0, padx=5, pady=5, sticky=tk.W)
 
-send_button = tk.Button(root, text="Отправить", command=send_message)
-send_button.pack()
+entry_message = tk.Entry(frame)
+entry_message.grid(row=1, column=1, padx=5, pady=5)
+
+send_button = tk.Button(frame, text="Отправить", command=send_message)
+send_button.grid(row=2, columnspan=2, padx=5, pady=5)
+
+text_box = tk.Text(root)
+text_box.pack(padx=10, pady=10)
+
+receive_button = tk.Button(root, text="Получить сообщения", command=receive_message)
+receive_button.pack(padx=10, pady=5)
 
 root.mainloop()
