@@ -3,7 +3,7 @@ import tkinter as tk
 import serial
 
 # Установите правильный COM порт и скорость передачи данных
-ser = serial.Serial('COM10', 9600)
+ser = serial.Serial('COM8', 9600)
 
 def send_message():
     name = entry_name.get()
