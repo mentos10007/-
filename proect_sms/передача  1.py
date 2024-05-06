@@ -2,7 +2,8 @@ import serial
 import tkinter as tk
 
 # Инициализация соединения с Arduino
-ser = serial.Serial('COM9', 9600)  # Укажите COM порт, к которому подключена первая Arduino
+ser = serial.Serial('COM8', 9600)  # Укажит
+# е COM порт, к которому подключена первая Arduino
 
 # Функция для отправки сообщения на Arduino
 def send_to_arduino(message):
