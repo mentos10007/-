@@ -1,15 +1,34 @@
-import serial
 import tkinter as tk
+import serial
 
-ser = serial.Serial('COM10', 9600) # Укажите порт, к которому подключена первая Arduino
+# Инициализация последовательного порта
+ser = serial.Serial('COM1', 9600)  # Укажите порт и скорость
 
-def send_data():
-    data = entry.get()
-    ser.write(data.encode())
+# Функция отправки текста на Arduino
+def send_text():
+    text = entry.get()
+    ser.write(text.encode())
 
+# Функция для приема текста от Arduino
+def receive_text():
+    if ser.in_waiting > 0:
+        data = ser.readline().decode().strip()
+        label.config(text=data)
+
+# Создание графического интерфейса Tkinter
 root = tk.Tk()
+root.title("Arduino Serial Communication")
+
 entry = tk.Entry(root)
 entry.pack()
-button = tk.Button(root, text="Send", command=send_data)
-button.pack()
+
+send_button = tk.Button(root, text="Send", command=send_text)
+send_button.pack()
+
+label = tk.Label(root, text="")
+label.pack()
+
+# Чтение данных со стороны Arduino
+root.after(100, receive_text)
+
 root.mainloop()

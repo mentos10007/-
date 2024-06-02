@@ -1,14 +1,8 @@
 import serial
-import tkinter as tk
 
-ser = serial.Serial('COM9', 9600) # Укажите порт, к которому подключена вторая Arduino
+ser = serial.Serial('COM10', 9600)  # Укажите порт и скорость соединения
 
-def receive_data():
-    data = ser.readline().decode()
-    label.config(text=data)
-
-root = tk.Tk()
-label = tk.Label(root, text="")
-label.pack()
-# receive_data()
-root.mainloop()
+while True:
+    if ser.in_waiting > 0:
+        data = ser.readline().decode().strip()
+        print(data)
